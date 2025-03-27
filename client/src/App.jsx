@@ -2,8 +2,10 @@ import React from "react";
 import { Button } from "./components/ui/button";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
-import { RouteIndex } from "./helpers/RouteName";
+import { RouteIndex, RouterSignIn, RouterSignUp } from "./helpers/RouteName";
 import Index from "./pages";
+import Signin from "./pages/Signin";
+import Signup from "./pages/Signup";
 
 const App = () => {
   return (
@@ -13,6 +15,10 @@ const App = () => {
           <Route path={RouteIndex} element={<Layout />}>
             <Route index element={<Index/>}></Route>
           </Route>
+          <Route path={RouterSignIn} element={<Signin/>}/>
+          <Route path={RouterSignUp} element={<Signup/>}/>
+
+
         </Routes>
       </BrowserRouter>
     </>
