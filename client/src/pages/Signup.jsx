@@ -6,10 +6,16 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Card } from '@/components/ui/card'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { RouterSignIn } from '@/helpers/RouteName'
+import axios from 'axios'
+import { getEvn } from '@/helpers/getEnv'
+import { showToast } from '@/helpers/showToast'
+import GoogleLogin from '@/components/GoogleAuth'
 
 const Signup = () => {
+
+    const navigate = useNavigate()
   const formSchema = z.object({
     name: z.string().min(3, 'Name must be at least 3 character long.'),
     email: z.string().email(),
@@ -26,16 +32,28 @@ const form = useForm({
       confirmPassword: '',
     },
 })
-
 async function onSubmit(values) {
-  
+    try {
+        const response = await axios.post(`${getEvn('VITE_API_BASE_URL')}/auth/register`, values)
+
+        if (response.status !== 200) {
+            return showToast('error', response.data.message)
+        }
+
+        navigate("/sign-in")
+        showToast('success', response.data.message)
+
+    } catch (error) {
+        showToast('error', error.response?.data?.message || error.message)
+    }
 }
+
   return (
     <div className='flex justify-center items-center h-screen w-screen'>
     <Card className="w-[400px] p-5">
         <h1 className='text-2xl font-bold text-center mb-5'>Create Your Account</h1>
         <div className=''>
-            {/* <GoogleLogin /> */}
+            <GoogleLogin />
             <div className='border my-5 flex justify-center items-center'>
                 <span className='absolute bg-white text-sm'>Or</span>
             </div>

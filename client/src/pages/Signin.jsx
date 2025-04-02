@@ -6,26 +6,50 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Card } from '@/components/ui/card'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { RouterSignUp } from '@/helpers/RouteName'
+import { getEvn } from '@/helpers/getEnv'
+import { showToast } from '@/helpers/showToast'
+import { useDispatch } from 'react-redux'
+import { setUser } from '@/redux/User/user.slice'
+import GoogleLogin from '@/components/GoogleAuth'
 
 const Signin = () => {
-  const formSchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(3, 'Password field  required.')
-})
+    const dispath = useDispatch()
+    const navigate = useNavigate()
+    const formSchema = z.object({
+        email: z.string().email(),
+        password: z.string().min(3, 'Password field  required.')
+    })
 
-const form = useForm({
-    resolver: zodResolver (formSchema),
-    defaultValues: {
-        email: '',  
-        password: '',
-    },
-})
+    const form = useForm({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            email: '',
+            password: '',
+        },
+    })
 
-async function onSubmit(values) {
-  
-}
+
+    async function onSubmit(values) {
+        try {
+            const response = await fetch(`${getEvn('VITE_API_BASE_URL')}/auth/login`, {
+                method: 'post',
+                headers: { 'Content-type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify(values)
+            })
+            const data = await response.json()
+            if (!response.ok) {
+                return showToast('error', data.message)
+            }
+            dispath(setUser(data.user))
+            navigate("/")
+            showToast('success', data.message)
+        } catch (error) {
+            showToast('error', error.message)
+        }
+    }
   return (
     <div>
   <div className='flex justify-center items-center h-screen w-screen'>
@@ -38,7 +62,7 @@ async function onSubmit(values) {
                 </div>
                 <h1 className='text-2xl font-bold text-center mb-5'>Login Into Account</h1>
                 <div className=''>
-                    {/* <GoogleLogin /> */}
+                    <GoogleLogin />
                     <div className='border my-5 flex justify-center items-center'>
                         <span className='absolute bg-white text-sm'>Or</span>
                     </div>
