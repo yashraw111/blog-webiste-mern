@@ -74,7 +74,7 @@ const handleLogout = async () => {
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link to="">
+                    <Link to="/profile">
                     <FaRegUser></FaRegUser>
                     Profile
                     

@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import AuthRoute from "./routes/Auth.route.js";
+import UserRoute from "./routes/user.route.js";
 
 dotenv.config();
 const app = express();
@@ -27,6 +28,7 @@ app.get("/", (req, res) => res.send("Hello World!"));
 // Router setup
 
 app.use("/api/auth",AuthRoute)
+app.use("/api/user",UserRoute)
 
 
 mongoose.connect(process.env.DB_URL,{dbName:"blogmernwebsite"})
