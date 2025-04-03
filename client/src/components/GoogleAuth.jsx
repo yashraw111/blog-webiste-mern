@@ -8,7 +8,7 @@ import { auth, provider } from '@/helpers/firebase';
 import { getEvn } from '@/helpers/getEnv';
 import { useDispatch } from 'react-redux';
 import { setUser } from '@/redux/User/user.slice';
-
+import axios from 'axios';
 const GoogleLogin = () => {
     const navigate = useNavigate()
     const dispath = useDispatch()
@@ -21,21 +21,15 @@ const GoogleLogin = () => {
                 email: user.email,
                 avatar: user.photoURL
             }
-            const response = await fetch(`${getEvn('VITE_API_BASE_URL')}/auth/google-login`, {
-                method: 'post',
+            const response = await axios.post(`${getEvn('VITE_API_BASE_URL')}/auth/google-login`, bodyData, {
                 headers: { 'Content-type': 'application/json' },
-                credentials: 'include',
-                body: JSON.stringify(bodyData)
+                withCredentials: true
             })
-            const data = await response.json()
-            if (!response.ok) {
-                return showToast('error', data.message)
-            }
-            dispath(setUser(data.user))
+            dispath(setUser(response.data.user))
             navigate("/")
-            showToast('success', data.message)
+            showToast('success', response.data.message)
         } catch (error) {
-            showToast('error', error.message)
+            showToast('error', error.response?.data?.message || error.message)
         }
     }
     return (

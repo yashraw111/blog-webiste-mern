@@ -12,9 +12,7 @@ import axios from 'axios'
 import { getEvn } from '@/helpers/getEnv'
 import { showToast } from '@/helpers/showToast'
 import GoogleLogin from '@/components/GoogleAuth'
-
-const Signup = () => {
-
+    const Signup = () => {
     const navigate = useNavigate()
   const formSchema = z.object({
     name: z.string().min(3, 'Name must be at least 3 character long.'),
@@ -70,7 +68,7 @@ async function onSubmit(values) {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Name</FormLabel>
-                                <FormControl>
+                                <FormControl >
                                     <Input placeholder="Enter your name" {...field} />
                                 </FormControl>
                                 <FormMessage />
