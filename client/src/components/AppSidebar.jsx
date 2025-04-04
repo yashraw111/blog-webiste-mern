@@ -18,6 +18,7 @@ import { BiSolidCategoryAlt } from "react-icons/bi";
 import { TbLogs } from "react-icons/tb";
 import { FaComments } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
+import {  RouteCategoryDetails } from '@/helpers/RouteName';
 const AppSidebar = () => {
   return (
     <Sidebar>
@@ -36,7 +37,7 @@ const AppSidebar = () => {
             <SidebarMenuItem>
                 <SidebarMenuButton>
                     <BiSolidCategoryAlt/>
-                    <Link to="">Category</Link>
+                    <Link to={RouteCategoryDetails}>Category</Link>
                 </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>

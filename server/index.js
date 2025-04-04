@@ -5,6 +5,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import AuthRoute from "./routes/Auth.route.js";
 import UserRoute from "./routes/user.route.js";
+import CategoryRoute from "./routes/category.route.js";
 
 dotenv.config();
 const app = express();
@@ -29,6 +30,7 @@ app.get("/", (req, res) => res.send("Hello World!"));
 
 app.use("/api/auth",AuthRoute)
 app.use("/api/user",UserRoute)
+app.use("/api/category",CategoryRoute)
 
 
 mongoose.connect(process.env.DB_URL,{dbName:"blogmernwebsite"})

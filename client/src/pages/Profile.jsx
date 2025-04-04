@@ -16,9 +16,8 @@ import Loading from '@/components/Loading'
 import Dropzone from 'react-dropzone'
 import { IoCameraOutline } from 'react-icons/io5'
 import { setUser } from '@/redux/User/user.slice'
+import userIcon from "../assets/images/user.png"
 const Profile = () => {
-
-
     const [filePreview, setPreview] = useState()
     const [file, setFile] = useState()
     const user = useSelector((state) => state.user)
@@ -90,7 +89,7 @@ const Profile = () => {
                             <div {...getRootProps()}>
                                 <input {...getInputProps()} />
                                 <Avatar className="w-28 h-28 relative group">
-                                    <AvatarImage src={filePreview ? filePreview : userData?.user?.avatar} />
+                                    <AvatarImage src={filePreview ? filePreview : userData?.user?.avatar || userIcon} />
                                     <div className='absolute z-50 w-full h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center bg-black bg-opacity-20 border-2 border-violet-500 rounded-full group-hover:flex hidden cursor-pointer'>
                                         <IoCameraOutline color='#7c3aed' />
                                     </div>

@@ -19,10 +19,7 @@ export const getUser = async (req, res, next) => {
     }
 }
 
-
 export const updateUser = async (req, res, next) => {
-    console.log(req.body)
-    console.log(req.file)
     try {
         const data = JSON.parse(req.body.data)
         const { userid } = req.params
@@ -36,7 +33,6 @@ export const updateUser = async (req, res, next) => {
             const hashedPassword = bcrypt.hashSync(data.password)
             user.password = hashedPassword
         }
-
         if (req.file) {
             // Upload an image
             const uploadResult = await cloudinary.uploader
@@ -45,14 +41,13 @@ export const updateUser = async (req, res, next) => {
                     { folder: 'mern-ecommerce-pr', resource_type: 'auto' }
                 )
                 .catch((error) => {
-                    next(handleError(500, error.message))
+                    // next(handleError(500, error.message))
+                    console.log(error)
                 });
 
-            user.avatar = uploadResult.secure_url
+            user.avatar = uploadResult?.secure_url
         }
-
         await user.save()
-
         const newUser = user.toObject({ getters: true })
         delete newUser.password
         res.status(200).json({
