@@ -18,8 +18,16 @@ import { BiSolidCategoryAlt } from "react-icons/bi";
 import { TbLogs } from "react-icons/tb";
 import { FaComments } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
-import {  RouteCategoryDetails } from '@/helpers/RouteName';
+import {  RouteBlog, RouteBlogByCategory, RouteCategoryDetails } from '@/helpers/RouteName';
+import { getEvn } from '@/helpers/getEnv';
+import { useFetch } from '@/hooks/UseFetch';
+import { useSelector } from 'react-redux';
 const AppSidebar = () => {
+    const user = useSelector(state => state.user)
+    const { data: categoryData } = useFetch(`${getEvn('VITE_API_BASE_URL')}/category/all-category`, {
+        method: 'get',
+        credentials: 'include'
+    })
   return (
     <Sidebar>
     <SidebarHeader className="bg-white">
@@ -43,7 +51,7 @@ const AppSidebar = () => {
             <SidebarMenuItem>
                 <SidebarMenuButton>
                     <TbLogs/>
-                    <Link to="">Blogs</Link>
+                    <Link to={RouteBlog}>Blogs</Link>
                 </SidebarMenuButton>
             </SidebarMenuItem>
 
@@ -67,14 +75,16 @@ const AppSidebar = () => {
             Categories
         </SidebarGroupLabel>
         <SidebarMenu>
-            <SidebarMenuItem>
-                <SidebarMenuButton>
-                    <GoDot/>
-                    <Link to="">Category item</Link>
-                </SidebarMenuButton>
-            </SidebarMenuItem>
-         
-        </SidebarMenu>
+                        {categoryData && categoryData.category.length > 0
+                            && categoryData.category.map(category => <SidebarMenuItem key={category._id}>
+                                <SidebarMenuButton>
+                                    <GoDot />
+                                    <Link to={RouteBlogByCategory(category.slug)}>{category.name}</Link>
+                                </SidebarMenuButton>
+                            </SidebarMenuItem>)
+                        }
+
+                    </SidebarMenu>
         
       </SidebarGroup>
     </SidebarContent>
