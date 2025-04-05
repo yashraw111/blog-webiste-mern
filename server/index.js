@@ -7,6 +7,8 @@ import AuthRoute from "./routes/Auth.route.js";
 import UserRoute from "./routes/user.route.js";
 import CategoryRoute from "./routes/category.route.js";
 import BlogRoute from "./routes/blog.route.js";
+import CommentRouote from "./routes/comment.route.js";
+import BlogLikeRoute from "./routes/bloglike.route.js";
 
 dotenv.config();
 const app = express();
@@ -33,6 +35,8 @@ app.use("/api/auth",AuthRoute)
 app.use("/api/user",UserRoute)
 app.use("/api/category",CategoryRoute)
 app.use('/api/blog', BlogRoute)
+app.use('/api/comment', CommentRouote)
+app.use('/api/blog-like', BlogLikeRoute)
 
 
 mongoose.connect(process.env.DB_URL,{dbName:"blogmernwebsite"})
