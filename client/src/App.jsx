@@ -5,7 +5,7 @@ import Layout from "./layout/Layout";
 import { RouteAddCategory, RouteBlog, RouteBlogAdd, RouteBlogByCategory, RouteBlogDetails, RouteBlogEdit, RouteCategoryDetails, RouteCommentDetails, RouteEditCategory, RouteIndex, RouteProfile, RouterSignIn, RouterSignUp, RouteSearch, RouteUser } from "./helpers/RouteName";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
-import Profile from "./pages/profile";
+import Profile from "./pages/Profile";
 import AddCategory from "./pages/Category/AddCategory";
 import CategoryDetails from "./pages/Category/CategoryDetails";
 import EditCategory from "./pages/Category/EditCategory";
