@@ -19,6 +19,7 @@ import Comments from "./pages/Comments";
 import User from "./pages/User";
 import AuthRouteProtechtion from "./components/AuthRouteProtechtion";
 import OnlyAdminAllowed from "./components/OnlyAdminAllowed";
+import Index from "./pages/Index";
 
 const App = () => {
   return (
