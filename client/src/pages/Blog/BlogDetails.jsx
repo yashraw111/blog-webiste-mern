@@ -24,10 +24,8 @@ const BlogDetails = () => {
     const [refreshData, setRefreshData] = useState(false)
     const { data: blogData, loading, error } = useFetch(`${getEvn('VITE_API_BASE_URL')}/blog/get-all`, {
         method: 'get',
-        credentials: 'include'
+        withCredentials: 'true'
     }, [refreshData])
-    console.log(blogData)
-
     const handleDelete = (id) => {
         const response = deleteData(`${getEvn('VITE_API_BASE_URL')}/blog/delete/${id}`)
         if (response) {
@@ -37,6 +35,7 @@ const BlogDetails = () => {
             showToast('error', 'Data not deleted.')
         }
     }
+console.log(blogData)
  
 
     if (loading) return <Loading />

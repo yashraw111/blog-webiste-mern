@@ -25,7 +25,7 @@ const User = () => {
     const [refreshData, setRefreshData] = useState(false)
     const { data, loading, error } = useFetch(`${getEvn('VITE_API_BASE_URL')}/user/get-all-user`, {
         method: 'get',
-        credentials: 'include'
+        withCredentials: 'true'
     }, [refreshData])
 
     const handleDelete = async (id) => {

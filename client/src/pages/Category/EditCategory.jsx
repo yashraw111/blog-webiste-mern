@@ -18,7 +18,7 @@ const EditCategory = () => {
 
     const { data: categoryData, loading, error } = useFetch(`${getEvn('VITE_API_BASE_URL')}/category/show/${category_id}`, {
         method: 'get',
-        credentials: 'include'
+        withCredentials: 'include'
     }, [category_id])
 
 

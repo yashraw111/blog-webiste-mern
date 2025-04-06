@@ -18,7 +18,7 @@ import { BiSolidCategoryAlt } from "react-icons/bi";
 import { TbLogs } from "react-icons/tb";
 import { FaComments } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
-import {  RouteBlog, RouteBlogByCategory, RouteCategoryDetails, RouteCommentDetails, RouteUser } from '@/helpers/RouteName';
+import {  RouteBlog, RouteBlogByCategory, RouteCategoryDetails, RouteCommentDetails, RouteIndex, RouteUser } from '@/helpers/RouteName';
 import { getEvn } from '@/helpers/getEnv';
 import { useFetch } from '@/hooks/UseFetch';
 import { useSelector } from 'react-redux';
@@ -39,34 +39,48 @@ const AppSidebar = () => {
             <SidebarMenuItem>
                 <SidebarMenuButton>
                     <IoHome/>
-                    <Link to="">Home</Link>
-                </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-                <SidebarMenuButton>
-                    <BiSolidCategoryAlt/>
-                    <Link to={RouteCategoryDetails}>Category</Link>
-                </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-                <SidebarMenuButton>
-                    <TbLogs/>
-                    <Link to={RouteBlog}>Blogs</Link>
+                    <Link to={RouteIndex}>Home</Link>
                 </SidebarMenuButton>
             </SidebarMenuItem>
 
-            <SidebarMenuItem>
-                <SidebarMenuButton>
-                    <FaComments/>
-                    <Link to={RouteCommentDetails}>Comments</Link>
-                </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-                <SidebarMenuButton>
-                    <FaUsers/>
-                    <Link to={RouteUser}>Users</Link>
-                </SidebarMenuButton>
-            </SidebarMenuItem>
+       
+       {user && user.isLoggedIn
+                            ? <>
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton>
+                                    <TbLogs/>
+                                        <Link to={RouteBlog}>Blogs</Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton>
+                                    <FaComments/>
+                                        <Link to={RouteCommentDetails}>Comments</Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            </>
+                            :
+                            <></>
+                        }
+                        {user && user.isLoggedIn && user.user.role === 'admin'
+                            ? <>
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton>
+                                    <BiSolidCategoryAlt/>
+                                        <Link to={RouteCategoryDetails}>Categories</Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton>
+                                    <FaUsers/>
+                                        <Link to={RouteUser}>Users</Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            </>
+                            :
+                            <></>
+                        }
         </SidebarMenu>
         
       </SidebarGroup>

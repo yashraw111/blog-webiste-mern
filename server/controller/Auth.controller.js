@@ -29,7 +29,6 @@ export const Register = async (req, res, next) => {
   }
 };
 export const Login = async (req, res, next) => {
-  console.log(req.body)
   try {
       const { email, password } = req.body
       const user = await User.findOne({ email })
@@ -45,10 +44,11 @@ export const Login = async (req, res, next) => {
           _id: user._id,
           name: user.name,
           email: user.email,
-          avatar: user.avatar
+          avatar: user.avatar,
+          role:user.role,
       }, process.env.JWT_SECRET)
       res.cookie('access_token', token, {
-          httpOnly: true,
+          httpOnly: false,
           secure: process.env.NODE_ENV === 'production',
           sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
           path: '/'
@@ -87,7 +87,8 @@ export const GoogleLogin = async (req, res, next) => {
           _id: user._id,
           name: user.name,
           email: user.email,
-          avatar: user.avatar
+          avatar: user.avatar,
+          role:user.role,
       }, process.env.JWT_SECRET)
 
       res.cookie('access_token', token, {

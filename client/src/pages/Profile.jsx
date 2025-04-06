@@ -23,7 +23,7 @@ const Profile = () => {
     const user = useSelector((state) => state.user)
 
     const { data: userData, loading, error } = useFetch(`${getEvn('VITE_API_BASE_URL')}/user/get-user/${user.user._id}`,
-    { method: 'get', credentials: 'include' },
+    { method: 'get', withCredentials: 'include' },
 
 )
     async function onSubmit(values) {

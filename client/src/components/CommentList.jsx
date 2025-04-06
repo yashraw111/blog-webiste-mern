@@ -49,15 +49,15 @@ const CommentList = ({ props }) => {
 
                 {data && data.comments.length > 0
                     &&
-                    data.comments.map(comment => {
+                    data?.comments?.map(comment => {
                         return (
                             <div key={comment._id} className='flex gap-2 mb-3'>
                                 <Avatar>
-                                    <AvatarImage src={comment?.user.avatar || usericon} />
+                                    <AvatarImage src={comment?.user?.avatar || usericon} />
                                 </Avatar>
 
                                 <div>
-                                    <p className='font-bold'>{comment?.user.name}</p>
+                                    <p className='font-bold'>{comment?.user?.name}</p>
                                     <p>{moment(comment?.createdAt).format('DD-MM-YYYY')}</p>
                                     <div className='pt-3'>
                                         {comment?.comment}

@@ -32,10 +32,10 @@ const SingleBlogDetails = () => {
                         <div className='flex justify-between items-center'>
                             <div className='flex justify-between items-center gap-5'>
                                 <Avatar>
-                                    <AvatarImage src={data.blog.author.avatar} />
+                                    <AvatarImage src={data?.blog?.author?.avatar} />
                                 </Avatar>
                                 <div>
-                                    <p className='font-bold'>{data.blog.author.name}</p>
+                                    <p className='font-bold'>{data?.blog?.author?.name}</p>
                                     <p>Date: {moment(data.blog.createdAt).format('DD-MM-YYYY')}</p>
                                 </div>
                             </div>

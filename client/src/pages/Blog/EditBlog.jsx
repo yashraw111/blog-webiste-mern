@@ -35,7 +35,7 @@ const EditBlog = () => {
 
     const { data: blogData, loading: blogLoading } = useFetch(`${getEvn('VITE_API_BASE_URL')}/blog/edit/${blogid}`, {
         method: 'get',
-        credentials: 'include'
+        withCredentials: 'include'
     }, [blogid])
 
  

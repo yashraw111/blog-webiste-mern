@@ -7,12 +7,14 @@ import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Card } from '@/components/ui/card'
 import { Link, useNavigate } from 'react-router-dom'
-import { RouterSignUp } from '@/helpers/RouteName'
+import { RouteIndex, RouterSignUp } from '@/helpers/RouteName'
 import { getEvn } from '@/helpers/getEnv'
 import { showToast } from '@/helpers/showToast'
 import { useDispatch } from 'react-redux'
 import { setUser } from '@/redux/User/user.slice'
 import GoogleLogin from '@/components/GoogleAuth'
+import logo from "../assets/images/logo-white.png"
+
 
 const Signin = () => {
     const dispath = useDispatch()
@@ -56,9 +58,9 @@ const Signin = () => {
             <Card className="w-[400px] p-5">
                 <div className='flex justify-center items-center mb-2'>
 
-                      {/* <Link to={RouteIndex}>
+                      <Link to={RouteIndex}>
                           <img src={logo} />
-                      </Link> */}
+                      </Link>
                 </div>
                 <h1 className='text-2xl font-bold text-center mb-5'>Login Into Account</h1>
                 <div className=''>
