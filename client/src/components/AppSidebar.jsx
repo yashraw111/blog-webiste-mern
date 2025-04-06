@@ -18,7 +18,7 @@ import { BiSolidCategoryAlt } from "react-icons/bi";
 import { TbLogs } from "react-icons/tb";
 import { FaComments } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
-import {  RouteBlog, RouteBlogByCategory, RouteCategoryDetails } from '@/helpers/RouteName';
+import {  RouteBlog, RouteBlogByCategory, RouteCategoryDetails, RouteCommentDetails } from '@/helpers/RouteName';
 import { getEvn } from '@/helpers/getEnv';
 import { useFetch } from '@/hooks/UseFetch';
 import { useSelector } from 'react-redux';
@@ -58,7 +58,7 @@ const AppSidebar = () => {
             <SidebarMenuItem>
                 <SidebarMenuButton>
                     <FaComments/>
-                    <Link to="">Comments</Link>
+                    <Link to={RouteCommentDetails}>Comments</Link>
                 </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
