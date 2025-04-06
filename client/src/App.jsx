@@ -3,7 +3,6 @@ import { Button } from "./components/ui/button";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import { RouteAddCategory, RouteBlog, RouteBlogAdd, RouteBlogByCategory, RouteBlogDetails, RouteBlogEdit, RouteCategoryDetails, RouteCommentDetails, RouteEditCategory, RouteIndex, RouteProfile, RouterSignIn, RouterSignUp, RouteSearch, RouteUser } from "./helpers/RouteName";
-import Index from "./pages";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Profile from "./pages/profile";
