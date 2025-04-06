@@ -18,7 +18,7 @@ import { BiSolidCategoryAlt } from "react-icons/bi";
 import { TbLogs } from "react-icons/tb";
 import { FaComments } from "react-icons/fa";
 import { GoDot } from "react-icons/go";
-import {  RouteBlog, RouteBlogByCategory, RouteCategoryDetails, RouteCommentDetails } from '@/helpers/RouteName';
+import {  RouteBlog, RouteBlogByCategory, RouteCategoryDetails, RouteCommentDetails, RouteUser } from '@/helpers/RouteName';
 import { getEvn } from '@/helpers/getEnv';
 import { useFetch } from '@/hooks/UseFetch';
 import { useSelector } from 'react-redux';
@@ -64,7 +64,7 @@ const AppSidebar = () => {
             <SidebarMenuItem>
                 <SidebarMenuButton>
                     <FaUsers/>
-                    <Link to="">Users</Link>
+                    <Link to={RouteUser}>Users</Link>
                 </SidebarMenuButton>
             </SidebarMenuItem>
         </SidebarMenu>
