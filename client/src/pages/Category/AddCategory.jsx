@@ -36,15 +36,14 @@ const AddCategory = () => {
             form.setValue('slug', slug)
         }
     }, [categoryName])
-
-
     async function onSubmit(values) {
         try {
             const response = await axios.post(
                 `${getEvn('VITE_API_BASE_URL')}/category/add`,
                 values,
                 {
-                    headers: { 'Content-Type': 'application/json' }
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true, 
                 }
             );
     

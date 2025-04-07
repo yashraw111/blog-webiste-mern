@@ -9,7 +9,6 @@ export const deleteData = async (endpoint) => {
 
         return true;
     } catch (error) {
-        console.log(error.response?.data?.message || error.message);
         return false;
     }
 };

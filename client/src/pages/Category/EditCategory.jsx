@@ -58,23 +58,23 @@ const EditCategory = () => {
 
     async function onSubmit(values) {
         try {
-            const response = await fetch(`${getEvn('VITE_API_BASE_URL')}/category/update/${category_id}`, {
-                method: 'put',
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(values)
-            })
-            const data = await response.json()
-            if (!response.ok) {
-                return showToast('error', data.message)
-            }
-            navigate(RouteCategoryDetails)
-            
-            showToast('success', data.message)
+            const response = await axios.put(
+                `${getEvn('VITE_API_BASE_URL')}/category/update/${category_id}`,
+                values,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true // 👈 Send cookies (for auth middleware)
+                }
+            );
+    
+            showToast('success', response.data.message);
+            navigate(RouteCategoryDetails);
         } catch (error) {
-            showToast('error', error.message)
+            showToast('error', error.response?.data?.message || error.message);
         }
     }
-
     return (
         <div>
             <Card className="pt-5 max-w-screen-md mx-auto">

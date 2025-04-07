@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select"
 import { useFetch } from '@/hooks/UseFetch'
 import Dropzone from 'react-dropzone'
-import Editor from '@/components/Editor.jsx'
+import Editor from '@/components/Editor'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { RouteBlog } from '@/helpers/RouteName'
@@ -30,7 +30,6 @@ const AddBlog = () => {
         method: 'get',
         credentials: 'include'
     })
-    console.log(categoryData)
 
     const [filePreview, setPreview] = useState()
     const [file, setFile] = useState()

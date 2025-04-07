@@ -8,7 +8,6 @@ export const addBlog = async (req, res, next) => {
         const data = JSON.parse(req.body.data)
         let featuredImage = ''
         if (req.file) {
-            // Upload an image
             const uploadResult = await cloudinary.uploader
                 .upload(
                     req.file.path,
