@@ -16,7 +16,7 @@ const port = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+     origin: ['http://localhost:8000', 'https://blog-webiste-mern.onrender.com'],
     credentials: true,
   })
 );
