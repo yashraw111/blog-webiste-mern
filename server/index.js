@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => res.send("Hello World!"));
-
+  
 // Router setup
 
 app.use("/api/auth", AuthRoute);
@@ -35,12 +35,19 @@ app.use("/api/blog", BlogRoute);
 app.use("/api/comment", CommentRouote);
 app.use("/api/blog-like", BlogLikeRoute);
 
-mongoose
-  .connect(process.env.DB_URL, { dbName: "blogmernwebsite" })
-  .then(() => {
-    console.log("Database connected..");
-  })
-  .catch((err) => console.log(err));
+mongoose.connect(process.env.DB_URL, {
+  dbName: "blogmernwebsite",
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log("✅ MongoDB Connected");
+})
+.catch((err) => {
+  console.error("❌ MongoDB Connection Error:", err);
+});
+
+
 app.listen(port, () =>
   console.log(`Example app listening on port http://localhost:${port}`)
 );
