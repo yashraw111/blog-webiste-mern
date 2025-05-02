@@ -39,7 +39,7 @@ mongoose
   .connect(process.env.DB_URL, { dbName: "blogmernwebsite" })
   .then(() => {
     console.log("Database connected..");
-  })  
+  })
   .catch((err) => console.log(err));
 app.listen(port, () =>
   console.log(`Example app listening on port http://localhost:${port}`)

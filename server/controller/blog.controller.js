@@ -17,7 +17,7 @@ export const addBlog = async (req, res, next) => {
                     next(handleError(500, error.message))
                 });
 
-            featuredImage = uploadResult.secure_url
+            featuredImage = uploadResult?.secure_url
         }
         const blog = new Blog({
             author: data.author,
@@ -65,7 +65,7 @@ export const updateBlog = async (req, res, next) => {
         blog.slug = data.slug
         blog.blogContent = encode(data.blogContent)
 
-        let featuredImage = blog.featuredImage
+        let featuredImage = blog?.featuredImage
 
         if (req.file) {
             // Upload an image
@@ -78,7 +78,7 @@ export const updateBlog = async (req, res, next) => {
                     next(handleError(500, error.message))
                 });
 
-            featuredImage = uploadResult.secure_url
+            featuredImage = uploadResult?.secure_url
         }
 
         blog.featuredImage = featuredImage

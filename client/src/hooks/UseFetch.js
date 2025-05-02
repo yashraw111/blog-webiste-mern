@@ -10,7 +10,6 @@ export const useFetch = (url, options = {}, dependencies = []) => {
             setLoading(true);
             try {
                 const response = await axios({ url, ...options });
-
                 setData(response.data);
                 setError(null);
             } catch (error) {

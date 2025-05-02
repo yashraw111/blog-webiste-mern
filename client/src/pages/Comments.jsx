@@ -26,7 +26,6 @@ const Comments = () => {
         method: 'get',
         withCredentials: 'true'
     }, [refreshData])
-console.log(data)
     const handleDelete = async (id) => {
         const response = await deleteData(`${getEvn('VITE_API_BASE_URL')}/comment/delete/${id}`)
         if (response) {

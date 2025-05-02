@@ -37,7 +37,6 @@ async function onSubmit(values) {
         if (response.status !== 200) {
             return showToast('error', response.data.message)
         }
-
         navigate("/sign-in")
         showToast('success', response.data.message)
 
