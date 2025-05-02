@@ -16,7 +16,7 @@ const port = process.env.PORT || 3000;
 
 app.use(
   cors({
-     origin: ['http://localhost:8000', 'https://blog-webiste-mern.onrender.com'],
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
@@ -35,19 +35,12 @@ app.use("/api/blog", BlogRoute);
 app.use("/api/comment", CommentRouote);
 app.use("/api/blog-like", BlogLikeRoute);
 
-mongoose.connect(process.env.DB_URL, {
-  dbName: "blogmernwebsite",
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => {
-  console.log("✅ MongoDB Connected");
-})
-.catch((err) => {
-  console.error("❌ MongoDB Connection Error:", err);
-});
-
-
+mongoose
+  .connect(process.env.DB_URL, { dbName: "blogmernwebsite" })
+  .then(() => {
+    console.log("Database connected..");
+  })
+  .catch((err) => console.log(err));
 app.listen(port, () =>
   console.log(`Example app listening on port http://localhost:${port}`)
 );
