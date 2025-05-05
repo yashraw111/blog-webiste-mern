@@ -2,6 +2,8 @@ import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { handleError } from "../helpers/handleError.js";
+
+
 export const Register = async (req, res, next) => {
   try {
     const { name, email, password,confirmPassword } = req.body;
@@ -77,12 +79,8 @@ export const GoogleLogin = async (req, res, next) => {
           const newUser = new User({
               name, email, password: hashedPassword, avatar
           })
-
           user = await newUser.save()
-
       }
-
-
       const token = jwt.sign({
           _id: user._id,
           name: user.name,

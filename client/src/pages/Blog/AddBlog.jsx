@@ -80,7 +80,6 @@ const AddBlog = () => {
 
   async function onSubmit(values) {
     console.log(values);
-
     try {
       const newValues = { ...values, author: user.user._id };
       if (!file) {
@@ -90,7 +89,6 @@ const AddBlog = () => {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("data", JSON.stringify(newValues));
-
       const response = await fetch(`${getEvn("VITE_API_BASE_URL")}/blog/add`, {
         method: "post",
         credentials: "include",
