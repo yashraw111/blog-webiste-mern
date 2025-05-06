@@ -14,7 +14,10 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://blog-webiste-mern.onrender.com',
+  credentials: true
+}));
 
 app.use(cookieParser());
 app.use(express.json());
