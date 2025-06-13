@@ -14,25 +14,27 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// --- YOUR CORRECTED CORS CONFIGURATION ---
 app.use(cors({
-  origin: 'https://blog-webiste-mern.onrender.com',
-  credentials: true
+  origin: 'http://localhost:5173', // Specific origin
+  credentials: true // Allow credentials
 }));
+// app.use(cors({
+//   origin: 'http://localhost:5173', // Specific origin
+//   credentials: true // Allow credentials
+// }));
 
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => res.send("Hello World!"));
-
 // Router setup
-
 app.use("/api/auth", AuthRoute);
 app.use("/api/user", UserRoute);
 app.use("/api/category", CategoryRoute);
 app.use("/api/blog", BlogRoute);
 app.use("/api/comment", CommentRouote);
 app.use("/api/blog-like", BlogLikeRoute);
-
 mongoose
   .connect(process.env.DB_URL, { dbName: "blogmernwebsite" })
   .then(() => {
@@ -42,10 +44,8 @@ mongoose
 app.listen(port, () =>
   console.log(`Example app listening on port http://localhost:${port}`)
 );
-
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
-
   const message = err.message || "Internal Server error ";
   res.status(statusCode).json({
     success: false,

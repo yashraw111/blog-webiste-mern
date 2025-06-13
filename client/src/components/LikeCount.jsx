@@ -10,7 +10,6 @@ const LikeCount = ({ props }) => {
     const [likeCount, setLikeCount] = useState(0)
     const [hasLiked, setHasLiked] = useState(false)
     const user = useSelector(state => state.user)
-
     const { data: blogLikeCount, loading, error } = useFetch(`${getEvn('VITE_API_BASE_URL')}/blog-like/get-like/${props.blogid}/${user && user.isLoggedIn ? user.user._id : ''}`, {
         method: 'get',
         credentials: 'include',

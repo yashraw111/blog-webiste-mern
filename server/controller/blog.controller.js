@@ -16,7 +16,6 @@ export const addBlog = async (req, res, next) => {
                 .catch((error) => {
                     next(handleError(500, error.message))
                 });
-
             featuredImage = uploadResult?.secure_url
         }
         const blog = new Blog({
@@ -39,6 +38,7 @@ export const addBlog = async (req, res, next) => {
         next(handleError(500, error.message))
     }
 }
+
 export const editBlog = async (req, res, next) => {
     try {
         const { blogid } = req.params
@@ -53,6 +53,7 @@ export const editBlog = async (req, res, next) => {
         next(handleError(500, error.message))
     }
 }
+
 export const updateBlog = async (req, res, next) => {
     try {
         const { blogid } = req.params
@@ -68,7 +69,6 @@ export const updateBlog = async (req, res, next) => {
         let featuredImage = blog?.featuredImage
 
         if (req.file) {
-            // Upload an image
             const uploadResult = await cloudinary.uploader
                 .upload(
                     req.file.path,
@@ -82,10 +82,7 @@ export const updateBlog = async (req, res, next) => {
         }
 
         blog.featuredImage = featuredImage
-
         await blog.save()
-
-
         res.status(200).json({
             success: true,
             message: 'Blog updated successfully.'
@@ -95,6 +92,7 @@ export const updateBlog = async (req, res, next) => {
         next(handleError(500, error.message))
     }
 }
+
 export const deleteBlog = async (req, res, next) => {
     try {
         const { blogid } = req.params
@@ -177,7 +175,6 @@ export const getBlogByCategory = async (req, res, next) => {
 export const search = async (req, res, next) => {
     try {
         const { q } = req.query
-
         const blog = await Blog.find({ title: { $regex: q, $options: 'i' } }).populate('author', 'name avatar role').populate('category', 'name slug').lean().exec()
         res.status(200).json({
             blog,
