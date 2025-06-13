@@ -16,7 +16,7 @@ const port = process.env.PORT || 3000;
 
 // --- YOUR CORRECTED CORS CONFIGURATION ---
 app.use(cors({
-  origin: process.env.origin, // Specific origin
+  origin: "https://blog-webiste-mern.onrender.com/", // Specific origin
   credentials: true // Allow credentials
 }));
 // app.use(cors({
